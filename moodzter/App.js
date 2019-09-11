@@ -9,6 +9,8 @@ import { StyleSheet } from 'react-native';
 import { ApplicationProvider, Layout, Text } from 'react-native-ui-kitten';
 import { mapping, light as theme } from '@eva-design/eva';
 import SplashScreen from 'react-native-splash-screen'
+
+SplashScreen.hide();
 const App = () => (
   
   <ApplicationProvider mapping={mapping} theme={theme}>
@@ -25,7 +27,7 @@ const App = () => (
     </Layout>
   </ApplicationProvider>
 );
-SplashScreen.hide();
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
