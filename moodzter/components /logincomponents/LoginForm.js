@@ -8,7 +8,7 @@ export default class LoginForm extends Component {
     return (
     
       <Container style={styles.container}>
-        <Header />
+        
         
         <Content  contentContainerStyle={{
          justifyContent: "center",

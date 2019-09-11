@@ -6,7 +6,6 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.root}>
-        <StatusBar hidden={false} style={styles.statusBar} />
         
         <LoginForm/>
         
