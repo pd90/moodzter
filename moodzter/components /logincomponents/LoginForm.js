@@ -68,8 +68,7 @@ export default class LoginForm extends Component {
           fontSize:15,
           margin:25,
         }} 
-         onPress={ this.handleClick } >Sign up with Email</Text>
-
+         onPress={ this.handleClick } >Sign up with Email.</Text>
           </Form>
         </Content>
       </Container>
