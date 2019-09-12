@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "582239482878",
+    "firebase_url": "https://moodzter-e6061.firebaseio.com",
+    "project_id": "moodzter-e6061",
+    "storage_bucket": "moodzter-e6061.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582239482878:android:a4e24f0e461df6296146af",
+        "android_client_info": {
+          "package_name": "com.moodzter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582239482878-d05uc7l0ufqk44pjp8k4rmmniajr0l18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlBcOMa4f1meQ3_1BPB8B5A5abLysRlSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582239482878-d05uc7l0ufqk44pjp8k4rmmniajr0l18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

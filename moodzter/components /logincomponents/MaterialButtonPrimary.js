@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 export default class MaterialButtonPrimary extends Component {
   render() {
     return (
-      <TouchableOpacity style={[styles.root, this.props.style]}>
+      <TouchableOpacity style={[styles.root, this.props.style]} onPress={this.props.onPress}>
         <Text style={styles.caption}>{this.props.caption || "Login"}</Text>
       </TouchableOpacity>
     );
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     minWidth: 88,
     minHeight:50,
-    borderRadius: 2,
+    borderRadius: 10,
     shadowOffset: {
       height: 1,
       width: 0
