@@ -5,6 +5,13 @@ import { Container, Header, Content, Form, Item, Input, Label
 import { SocialIcon } from 'react-native-elements'
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
 export default class LoginForm extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+        email:"",
+        password:"",
+    };
+  }
   render() {
     return (
     
@@ -20,13 +27,18 @@ export default class LoginForm extends Component {
           <Form style={{width: '100%'}}>
          
           <Image source={require('../../assets/logo.png')} style={styles.profileImg} />
-            <Item floatingLabel  style={{margin: 15}}>
+            <Item floatingLabel  style={{margin: 15}} >
               <Label>Email</Label>
-              <Input />
+              <Input
+              value={this.state.email} 
+              onChangeText={(text) => this.setState({ email: text })}/>
             </Item>
             <Item floatingLabel style={{margin: 15}}>
               <Label>Password</Label>
-              <Input secureTextEntry={true} />
+              <Input
+               secureTextEntry={true}
+               value={this.state.password} 
+              onChangeText={(text) => this.setState({ password: text })} />
             </Item>
             
           <MaterialButtonPrimary 
@@ -36,7 +48,7 @@ export default class LoginForm extends Component {
               padding:15,
               justifyContent: 'center',
               backgroundColor:'#2196F3'}}
-              onPress={() => this.handleClick()}
+              onPress={() => this.signInWithEmail()}
               > 
           </MaterialButtonPrimary>
 
@@ -68,17 +80,18 @@ export default class LoginForm extends Component {
           fontSize:15,
           margin:25,
         }} 
-         onPress={ this.handleClick } >Sign up with Email.</Text>
+         onPress={ this.signInWithEmail } >Sign up with Email.</Text>
           </Form>
         </Content>
       </Container>
     );
   }
-  //handle the click here
-  handleClick() {
-     alert('love it');
-  }
+  //handle the signin click here
+  signInWithEmail() {
+     //login logic for firebase 
 
+  }
+  
 }
 const styles = StyleSheet.create({
     container: {},

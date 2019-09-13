@@ -8,19 +8,28 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ApplicationProvider,IconRegistry } from 'react-native-ui-kitten';
-import { mapping, light as theme } from '@eva-design/eva';
+import { mapping, dark as theme } from '@eva-design/eva';
 import SplashScreen from 'react-native-splash-screen';
 import Login from './components /Login';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import Loading from './components /Loading'
+import { createAppContainer,createSwitchNavigator } from 'react-navigation'
 
 SplashScreen.hide();
-const App = () => (
-  
-  <ApplicationProvider mapping={mapping} theme={theme}>
-   <Login/>
-   <IconRegistry icons={EvaIconsPack}/>
-  </ApplicationProvider>
+// create our app's navigation stack
+<ApplicationProvider mapping={mapping} theme={theme}>
+<IconRegistry icons={EvaIconsPack}/>
+</ApplicationProvider>
+const SwitchNavigator = createSwitchNavigator(
+  {
+    LoadingScreen: Loading,
+    LoginScreen:Login,
+  },
+  {
+    initialRouteName: 'LoadingScreen'
+  }
 );
+const App = createAppContainer(SwitchNavigator);
 
 const styles = StyleSheet.create({
   container: {
