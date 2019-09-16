@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet,Image} from "react-native";
 import { Container, Header, Content, Form, Item, Input, Label
-    ,Button,Text } from 'native-base';
+    ,Button,Text,Toast } from 'native-base';
 import { SocialIcon } from 'react-native-elements'
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
+import firebase from 'react-native-firebase';
+
 export default class LoginForm extends Component {
   constructor(props){
     super(props);
@@ -13,10 +15,13 @@ export default class LoginForm extends Component {
     };
   }
   render() {
+    const { navigation } = this.props.navigation;
+    const mStatus = navigation.getParam('status', 'fail');
+  
     return (
-    
+      
       <Container style={styles.container}>
-        
+    
         <Content  contentContainerStyle={{
          justifyContent: "center",
          alignItems: 'center',
@@ -49,6 +54,7 @@ export default class LoginForm extends Component {
               justifyContent: 'center',
               backgroundColor:'#2196F3'}}
               onPress={() => this.signInWithEmail()}
+              caption={"Login"}
               > 
           </MaterialButtonPrimary>
 
@@ -80,7 +86,10 @@ export default class LoginForm extends Component {
           fontSize:15,
           margin:25,
         }} 
-         onPress={ this.signInWithEmail } >Sign up with Email.</Text>
+         onPress={ () => {
+            navigation.navigate('SignUp') 
+         }
+         } >Sign up with Email.</Text>
           </Form>
         </Content>
       </Container>
@@ -89,9 +98,8 @@ export default class LoginForm extends Component {
   //handle the signin click here
   signInWithEmail() {
      //login logic for firebase 
-
+     
   }
-  
 }
 const styles = StyleSheet.create({
     container: {},

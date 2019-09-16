@@ -7,7 +7,7 @@ export default class Login extends Component {
     return (
       <View style={styles.root}>
         
-        <LoginForm/>
+        <LoginForm navigation={this.props}/>
         
       </View>
     );

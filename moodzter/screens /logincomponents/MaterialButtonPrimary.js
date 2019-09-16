@@ -5,7 +5,7 @@ export default class MaterialButtonPrimary extends Component {
   render() {
     return (
       <TouchableOpacity style={[styles.root, this.props.style]} onPress={this.props.onPress}>
-        <Text style={styles.caption}>{this.props.caption || "Login"}</Text>
+        <Text style={styles.caption}>{this.props.caption}</Text>
       </TouchableOpacity>
     );
   }
