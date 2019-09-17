@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet,Image} from "react-native";
+import { StyleSheet,Image,View,ActivityIndicator} from "react-native";
 import { Container, Header, Content, Form, Item, Input, Label
     ,Button,Text,Toast } from 'native-base';
 import { SocialIcon } from 'react-native-elements'
@@ -12,6 +12,7 @@ export default class LoginForm extends Component {
     this.state={
         email:"",
         password:"",
+        loading:false,
     };
   }
   render() {
@@ -21,7 +22,14 @@ export default class LoginForm extends Component {
     return (
       
       <Container style={styles.container}>
-    
+       {this.state.loading &&
+        <View style={styles.loading}>
+            <ActivityIndicator  
+            size='large'
+            color="#2196F3"
+            />
+        </View>
+        }
         <Content  contentContainerStyle={{
          justifyContent: "center",
          alignItems: 'center',
@@ -53,7 +61,7 @@ export default class LoginForm extends Component {
               padding:15,
               justifyContent: 'center',
               backgroundColor:'#2196F3'}}
-              onPress={() => this.signInWithEmail()}
+              onPress={() => this.checkTextInput(navigation)}
               caption={"Login"}
               > 
           </MaterialButtonPrimary>
@@ -96,9 +104,38 @@ export default class LoginForm extends Component {
     );
   }
   //handle the signin click here
-  signInWithEmail() {
+  signInWithEmail=(navigation) => {
      //login logic for firebase 
-     
+     const { email, password } = this.state
+     firebase
+     .auth()
+     .signInWithEmailAndPassword(email, password)
+     .then(() => {
+       this.hideLoading()
+       navigation.navigate('Home')
+      })
+     .catch(error => {
+       alert(error.message) 
+       this.hideLoading() 
+       this.setState({ errorMessage: error.message })
+      })
+  }
+  checkTextInput = (navigation) => {
+    //Handler for the Submit onPress
+    if (this.state.email != '' && this.state.password != '') {
+        this.showLoading();
+        this.signInWithEmail(navigation);
+    } else {
+      alert('Please Enter email and password to sign in');
+      this.hideLoading();
+    }
+  };
+  showLoading() {
+    this.setState({loading: true})
+  }
+
+  hideLoading() {
+    this.setState({loading: false})
   }
 }
 const styles = StyleSheet.create({
@@ -119,5 +156,15 @@ const styles = StyleSheet.create({
         alignContent:'center',
         flexWrap:'wrap'
       },
+      loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity: 0.5,
+    },
     }
   );
