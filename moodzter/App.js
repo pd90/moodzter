@@ -17,6 +17,7 @@ import { createAppContainer,createSwitchNavigator } from 'react-navigation'
 import SignUp from './screens /logincomponents/SignUp';
 import { createStackNavigator } from 'react-navigation-stack';
 import LoginForm from './screens /logincomponents/LoginForm';
+import ForgotPassword from './screens /logincomponents/ForgotPassword';
 import HomeScreen from './screens /HomeScreen';
 import Profile from './screens /Profile';
 import TrendsScreen from './screens /TrendsScreen';
@@ -87,7 +88,8 @@ const AppNavigator = createStackNavigator({
     navigationOptions: {
       header: null,
     }},
-  SignUp: { screen: SignUp }
+  SignUp: { screen: SignUp },
+  ForgotPassword: { screen: ForgotPassword }
 },{ headerMode: 'none' });
 
 const App = createAppContainer(AppNavigator);

@@ -6,6 +6,8 @@ import { SocialIcon } from 'react-native-elements'
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
 import firebase from 'react-native-firebase';
 import {facebookLogin} from '../../helpers/facebooklogin'
+import {googleLogin} from '../../helpers/googlesignin'
+
 export default class LoginForm extends Component {
   constructor(props){
     super(props);
@@ -77,7 +79,7 @@ export default class LoginForm extends Component {
           type='facebook'
           onPress={ () => {
             facebookLogin()
-         }
+           }
          }
           style={{
               marginTop:25,
@@ -89,6 +91,10 @@ export default class LoginForm extends Component {
           title='Sign In With Google'
           button
           type='google'
+          onPress={ () => {
+            googleLogin()
+           }
+         }
           style={{
               marginEnd:25,
               marginStart:25,
@@ -111,7 +117,7 @@ export default class LoginForm extends Component {
           borderColor: '#00fff',
           }} 
          onPress={ () => {
-            navigation.navigate('SignUp') 
+            navigation.navigate('ForgotPassword') 
          }
          } >Forgot password?</Text>
           </Form>
