@@ -5,7 +5,7 @@ import { Container, Header, Content, Form, Item, Input, Label
 import { SocialIcon } from 'react-native-elements'
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
 import firebase from 'react-native-firebase';
-
+import {facebookLogin} from '../../helpers/facebooklogin'
 export default class LoginForm extends Component {
   constructor(props){
     super(props);
@@ -66,6 +66,7 @@ export default class LoginForm extends Component {
               > 
           </MaterialButtonPrimary>
 
+        
           <Text style={{
             alignSelf:'center'
           }}>OR</Text>
@@ -74,6 +75,10 @@ export default class LoginForm extends Component {
           title='Sign In With Facebook'
           button
           type='facebook'
+          onPress={ () => {
+            facebookLogin()
+         }
+         }
           style={{
               marginTop:25,
               marginEnd:25,
@@ -89,15 +94,26 @@ export default class LoginForm extends Component {
               marginStart:25,
             }}
           />
+       
         <Text style={{
           alignSelf:'center',
           fontSize:15,
-          margin:25,
+          margin:15,
         }} 
          onPress={ () => {
             navigation.navigate('SignUp') 
          }
          } >Sign up with Email.</Text>
+
+         <Text style={{
+          alignSelf:'center',
+          fontSize:12,
+          borderColor: '#00fff',
+          }} 
+         onPress={ () => {
+            navigation.navigate('SignUp') 
+         }
+         } >Forgot password?</Text>
           </Form>
         </Content>
       </Container>
@@ -137,6 +153,8 @@ export default class LoginForm extends Component {
   hideLoading() {
     this.setState({loading: false})
   }
+
+  
 }
 const styles = StyleSheet.create({
     container: {},
@@ -148,8 +166,8 @@ const styles = StyleSheet.create({
         alignSelf:'center',
       },
       profileImg: {
-        height: 150,
-        width:150,
+        height: 120,
+        width:120,
         borderRadius: 40,
         overflow: 'hidden',
         alignSelf:'center',
