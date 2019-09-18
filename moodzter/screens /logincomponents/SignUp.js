@@ -5,6 +5,8 @@ import { SocialIcon } from 'react-native-elements'
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
 import firebase from 'react-native-firebase';
 import Toast from 'react-native-root-toast';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 export default class SignUp extends Component {
   constructor(props){
     super(props);
@@ -16,6 +18,13 @@ export default class SignUp extends Component {
         status:false,
     };
   }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        spinner: !this.state.loading
+      });
+    }, 2000);
+  }
   render() {
       //Add other content here
      
@@ -24,10 +33,8 @@ export default class SignUp extends Component {
       <Container style={styles.container}>
          {this.state.loading &&
         <View style={styles.loading}>
-            <ActivityIndicator  
-            size='large'
-            color="#2196F3"
-            />
+           <Spinner
+            visible={this.state.loading}/>
         </View>
         }
         <Content  contentContainerStyle={{

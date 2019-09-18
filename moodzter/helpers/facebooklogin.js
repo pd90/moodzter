@@ -9,8 +9,9 @@ export async function facebookLogin() {
   
       if (result.isCancelled) {
         // handle this however suites the flow of your app
-        throw new Error('User cancelled request'); 
+        
       }
+      else{
   
       console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
   
@@ -29,6 +30,7 @@ export async function facebookLogin() {
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
   
       console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
+    }
     } catch (e) {
       console.error(e);
     }

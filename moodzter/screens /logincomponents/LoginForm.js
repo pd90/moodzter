@@ -7,6 +7,7 @@ import MaterialButtonPrimary from "./MaterialButtonPrimary";
 import firebase from 'react-native-firebase';
 import {facebookLogin} from '../../helpers/facebooklogin'
 import {googleLogin} from '../../helpers/googlesignin'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class LoginForm extends Component {
   constructor(props){
@@ -17,6 +18,13 @@ export default class LoginForm extends Component {
         loading:false,
     };
   }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        spinner: !this.state.loading
+      });
+    }, 2000);
+  }
   render() {
     const { navigation } = this.props.navigation;
     const mStatus = navigation.getParam('status', 'fail');
@@ -25,11 +33,10 @@ export default class LoginForm extends Component {
       
       <Container style={styles.container}>
        {this.state.loading &&
-        <View style={styles.loading}>
-            <ActivityIndicator  
-            size='large'
-            color="#2196F3"
-            />
+        <View style={styles.loading}
+        >
+          <Spinner
+            visible={this.state.loading}/>
         </View>
         }
         <Content  contentContainerStyle={{
@@ -188,7 +195,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        opacity: 0.5,
+        
     },
     }
   );

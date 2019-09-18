@@ -4,6 +4,8 @@ import { Container, Header, Content, Form, Item, Input, Label} from 'native-base
 import { SocialIcon } from 'react-native-elements'
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
 import firebase from 'react-native-firebase';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 export default class SignUp extends Component {
   constructor(props){
     super(props);
@@ -15,6 +17,13 @@ export default class SignUp extends Component {
         status:false,
     };
   }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        loading: this.state.loading
+      });
+    }, 3000);
+  }
   render() {
       //Add other content here
      
@@ -23,10 +32,8 @@ export default class SignUp extends Component {
       <Container style={styles.container}>
          {this.state.loading &&
         <View style={styles.loading}>
-            <ActivityIndicator  
-            size='large'
-            color="#2196F3"
-            />
+           <Spinner
+            visible={this.state.loading}/>
         </View>
         }
         <Content  contentContainerStyle={{
@@ -69,7 +76,9 @@ export default class SignUp extends Component {
   forgotPassword = (yourEmail) => {
     firebase.auth().sendPasswordResetEmail(yourEmail)
       .then(function (user) {
+        this.hideLoading();
         alert('Please check your email...')
+        
       }).catch(function (e) {
         console.log(e)
       })
