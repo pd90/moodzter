@@ -22,7 +22,7 @@ export default class SignUp extends Component {
       this.setState({
         loading: this.state.loading
       });
-    }, 3000);
+    }, 2000);
   }
   render() {
       //Add other content here
@@ -75,7 +75,7 @@ export default class SignUp extends Component {
 
   forgotPassword = (yourEmail) => {
     firebase.auth().sendPasswordResetEmail(yourEmail)
-      .then(function (user) {
+      .then(()=>{
         this.hideLoading();
         alert('Please check your email...')
         

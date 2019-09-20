@@ -10,6 +10,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 export default class SignUp extends Component {
   constructor(props){
     super(props);
+    this._isMounted = false;
     this.state={
         email:"",
         password:"",
@@ -19,12 +20,14 @@ export default class SignUp extends Component {
     };
   }
   componentDidMount() {
+    this._isMounted = true;
     setInterval(() => {
       this.setState({
-        spinner: !this.state.loading
+        loading: this.state.loading
       });
     }, 2000);
   }
+
   render() {
       //Add other content here
      
@@ -114,7 +117,9 @@ export default class SignUp extends Component {
     //Handler for the Submit onPress
     if (this.state.email != '' && this.state.password != '') {
         this.showLoading();
-        this.handleSignUp();
+        if(this._isMounted){
+            this.handleSignUp();
+        }
     } else {
       alert('Please Enter email and password to sign up');
       this.hideLoading();
