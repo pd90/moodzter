@@ -21,6 +21,8 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.List;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
