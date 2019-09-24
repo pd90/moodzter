@@ -212,7 +212,7 @@ dependencies {
     implementation "com.google.firebase:firebase-auth:17.0.0"
      // Needed to support API<21, though there is a small chance proguard shrinks things sufficiently
     implementation "com.android.support:multidex:1.0.3"
-
+    implementation "com.google.firebase:firebase-firestore:15.0.0"
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
       debugImplementation files(hermesPath + "hermes-debug.aar")

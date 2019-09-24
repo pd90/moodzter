@@ -21,7 +21,7 @@ export default class LoginForm extends Component {
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        spinner: !this.state.loading
+        loading: !this.state.loading
       });
     }, 2000);
   }
