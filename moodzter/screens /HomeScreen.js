@@ -26,7 +26,9 @@ export default class HomeScreen extends Component {
           />
           <Body
           style={{ flex: 1,  justifyContent: 'center', alignItems: 'center' }}>
-            <Title>Home</Title>
+            <Title>
+              Home
+            </Title>
           </Body>
           <Right 
           style={{flex: 3}}/>
