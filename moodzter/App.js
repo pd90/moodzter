@@ -25,6 +25,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 SplashScreen.hide();
+var style = require('./helpers/constants');
 // create our app's navigation stack
 <ApplicationProvider mapping={mapping} theme={theme}>
 <IconRegistry icons={EvaIconsPack}/>
@@ -61,9 +62,9 @@ const AppTabNavigator = createMaterialBottomTabNavigator({
   }
 },{
    initialRouteName: 'Home',
-   activeColor: '#f0edf6',  
-   inactiveColor: '#226557', 
-   barStyle: { backgroundColor: '#21bff3' },  
+   activeColor: '#2770e6',  
+   inactiveColor: '#040121', 
+   barStyle: { backgroundColor: style.bottomBarColor },  
 });
 const SwitchNavigator = createSwitchNavigator(
   {
@@ -80,7 +81,7 @@ const SwitchNavigator = createSwitchNavigator(
   }
 );
 
-
+<AppNavigator/>
 
 const AppNavigator = createStackNavigator({
   SwitchNavigator:{screen: SwitchNavigator},
@@ -90,7 +91,8 @@ const AppNavigator = createStackNavigator({
     }},
   SignUp: { screen: SignUp },
   ForgotPassword: { screen: ForgotPassword }
-},{ headerMode: 'none' });
+},
+{ headerMode: 'none' });
 
 const App = createAppContainer(AppNavigator);
 

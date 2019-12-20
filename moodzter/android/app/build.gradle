@@ -190,11 +190,15 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-google-signin')
+    
     implementation project(':react-native-reanimated')
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-vector-icons')
-    implementation project(':react-native-firebase')
+    compile(project(':react-native-firebase')) {
+    transitive = false
+    }
     implementation project(':react-native-svg')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -213,7 +217,7 @@ dependencies {
     implementation "com.google.firebase:firebase-auth:17.0.0"
      // Needed to support API<21, though there is a small chance proguard shrinks things sufficiently
     implementation "com.android.support:multidex:1.0.3"
-    implementation "com.google.firebase:firebase-firestore:15.0.0"
+    implementation "com.google.firebase:firebase-firestore:17.1.5"
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
       debugImplementation files(hermesPath + "hermes-debug.aar")
