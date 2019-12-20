@@ -1,5 +1,5 @@
 // Loading.js
-import React from 'react'
+import React from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import firebase from '../firebase/Firebase';
 import mfirebase from 'react-native-firebase';
@@ -14,18 +14,23 @@ export default class Loading extends React.Component {
       moods: []
     };
   }
-  componentDidMount() {
+   componentDidMount() {    
+    var moods = {};
     db.collection("moods")
     .onSnapshot(function(querySnapshot) {
+     
         querySnapshot.forEach(function(doc) {
             // now do the reducer work to add global mood list
-            alert(doc.data().moodname);
-        });      
+            var type = doc.data().type;
+            moods[type] = doc.data().moodname;
+        });  
+        
     });
-    firebase.auth().onAuthStateChanged(user => {
-     
+    
+    firebase.auth().onAuthStateChanged(user => {    
       this.props.navigation.navigate(user ? 'Home' : 'LoginScreen')
     })
+    console.log("array obj"+JSON.stringify(moods));
   }
   render() {
     return (
