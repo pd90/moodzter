@@ -29,7 +29,7 @@ export async function facebookLogin() {
       // login with credential
       const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
   
-      console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
+      console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
     }
     } catch (e) {
       console.error(e);

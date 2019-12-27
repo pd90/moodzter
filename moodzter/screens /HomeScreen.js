@@ -14,13 +14,13 @@ export default class HomeScreen extends PureComponent {
     };
   }
   componentDidMount() {
-    const { currentUser } = firebase.auth()
+    const { currentUser } = firebase.auth();
     this.setState(
       { 
         currentUser: currentUser,
        
       }
-    )
+    );
 
   //  axios.get('https://api.quotable.io/random')
   //  .then(response => {

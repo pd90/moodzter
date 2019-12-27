@@ -5,34 +5,43 @@ import firebase from '../firebase/Firebase';
 import mfirebase from 'react-native-firebase';
 
 var db = mfirebase.firestore(firebase);
+var moods= [];
 export default class Loading extends React.Component {
-  
+  _isMounted = false;
   constructor() {
     super();
     
     this.state = {
-      moods: []
+      moods: [],
     };
   }
    componentDidMount() {    
-    var moods = {};
-    db.collection("moods")
-    .onSnapshot(function(querySnapshot) {
-     
-        querySnapshot.forEach(function(doc) {
-            // now do the reducer work to add global mood list
-            var type = doc.data().type;
-            moods[type] = doc.data().moodname;
-        });  
-        
+    this._isMounted = true;
+    db.collection("moods").get().then(snapshot => {
+      snapshot
+        .docs
+        .forEach(doc => {
+          if(doc.data().type=="positive"){
+            moods.push(doc.data().moodname);
+          }
+        });
+        console.log("array"+moods);
+        if (this._isMounted) {
+          this.setState({moods:moods});
+        }
     });
     
     firebase.auth().onAuthStateChanged(user => {    
       this.props.navigation.navigate(user ? 'Home' : 'LoginScreen')
-    })
-    console.log("array obj"+JSON.stringify(moods));
+    });
+   
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+  
   render() {
+    
     return (
       <View style={styles.container}>
         <Text>Loading...</Text>
